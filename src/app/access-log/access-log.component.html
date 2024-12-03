@@ -1,0 +1,16 @@
+<h2>Access Log</h2>
+
+<table class="table">
+    <thead>
+        <tr><th>Id</th><th>User</th><th>time</th><th>building</th><th>direction</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let accessRecord of accessRecords">
+            <td>{{accessRecord.id}}</td>
+            <td>{{accessRecord.user}}</td>
+            <td>{{accessRecord.time}}</td>
+            <td>{{accessRecord.building}}</td>
+            <td>{{accessRecord.status ? "in" : "out"}}</td>
+        </tr>
+    </tbody>
+</table>

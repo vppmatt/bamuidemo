@@ -1,0 +1,18 @@
+<h2>Who is in the building</h2>
+
+<p>There are {{accessRecords.length}} users in the building right now</p>
+
+<table class="table">
+    <thead>
+        <tr><th>Id</th><th>User</th><th>time</th><th>building</th><th>direction</th></tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let accessRecord of accessRecords">
+            <td>{{accessRecord.id}}</td>
+            <td>{{accessRecord.user}}</td>
+            <td>{{accessRecord.time}}</td>
+            <td>{{accessRecord.building}}</td>
+            <td>{{accessRecord.status ? "in" : "out"}}</td>
+        </tr>
+    </tbody>
+</table>
