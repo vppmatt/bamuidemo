@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-sort',
@@ -12,8 +13,11 @@ export class UserSortComponent {
   @Output()
   sortEvent : EventEmitter<number> = new EventEmitter<number>();
 
+  constructor(private router : Router) {}
+
   handleClick(sortType : number) {
     this.sortEvent.emit(sortType);
+    this.router.navigate(["users"] , {queryParams : {sortType: sortType}});
   }
 
 }

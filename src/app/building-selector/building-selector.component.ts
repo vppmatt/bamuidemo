@@ -19,8 +19,21 @@ export class BuildingSelectorComponent implements OnInit {
   constructor(private dataService : DataService, private route: ActivatedRoute,
     private router: Router) {}
 
+    getDataFromServer() {
+      this.dataService.getBuildings().subscribe(data => {
+        this.buildings = data
+        console.log("got the data from the server")
+        localStorage.setItem("buildings", JSON.stringify(data));
+      });
+    }
+
   ngOnInit(): void {
-      this.dataService.getBuildings().subscribe(data => this.buildings = data);
+    this.buildings = JSON.parse(localStorage.getItem("buildings") || "[]");
+    if (this.buildings.length === 0) {
+      console.log("no data in local storage")
+      this.getDataFromServer();
+    }
+    
       this.route.params.subscribe(params => this.currentBuilding = params['building']);
   }
 
