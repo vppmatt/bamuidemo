@@ -4,6 +4,7 @@ import { UserPageComponent } from './users/user-page/user-page.component';
 import { WhoIsInTheBuildingComponent } from './who-is-in-the-building/who-is-in-the-building.component';
 import { AccessLogComponent } from './access-log/access-log.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {path : "", component : HomeComponent},
@@ -11,5 +12,6 @@ export const routes: Routes = [
     {path : "emergency", component: WhoIsInTheBuildingComponent},
     {path : "emergency/:building", component: WhoIsInTheBuildingComponent},
     {path: "access", component: AccessLogComponent},
+    {path: "login", component: LoginComponent},
     {path : "**", component: PageNotFoundComponent}
 ];
