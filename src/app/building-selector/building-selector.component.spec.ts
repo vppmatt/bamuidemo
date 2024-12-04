@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BuildingSelectorComponent } from './building-selector.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('BuildingSelectorComponent', () => {
   let component: BuildingSelectorComponent;
@@ -8,7 +10,8 @@ describe('BuildingSelectorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BuildingSelectorComponent]
+      imports: [BuildingSelectorComponent],
+      providers : [provideHttpClient(), provideRouter([])]
     })
     .compileComponents();
 
