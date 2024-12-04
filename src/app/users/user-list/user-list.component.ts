@@ -3,12 +3,12 @@ import { DataService } from '../../services/data.service';
 import { User } from '../../../model/User';
 import { Observable } from 'rxjs';
 import { NgFor } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })

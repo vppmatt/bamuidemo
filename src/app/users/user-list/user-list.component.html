@@ -1,13 +1,15 @@
+<a class="btn btn-primary"  routerLink="/users-edit" >bulk edit</a>
 
 <table class="table">
     <thead>
-            <tr><th>Id</th><th>First name</th><th>Surname</th></tr>
+            <tr><th>Id</th><th>First name</th><th>Surname</th><th>Action</th></tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of users">
             <td>{{user.id}}</td>
             <td>{{user.firstname}}</td>
             <td>{{user.surname}}</td>
+            <td><a class="btn btn-primary btn-sm" routerLink = '{{"/users/" + user.id}}'>edit</a> </td>
         </tr>
     </tbody>
 </table>
