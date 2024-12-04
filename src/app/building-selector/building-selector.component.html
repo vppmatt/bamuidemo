@@ -1,0 +1,7 @@
+<div class="my-3">
+    <select [value]="currentBuilding" (change)="onChange($event)">
+        <option value="">--select--</option>
+        <option *ngFor="let building of buildings" [value]="building.name" >{{building.name}}</option>
+    </select>
+    current building is {{currentBuilding}}
+</div>

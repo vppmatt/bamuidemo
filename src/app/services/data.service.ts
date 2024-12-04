@@ -4,6 +4,7 @@ import { User } from '../../model/User';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { AccessRecord } from '../../model/AccessRecord';
+import { Building } from '../../model/Building';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,10 @@ export class DataService {
      const today = new Date().toISOString().split("T")[0].replace("/","");
      return this.getAccessRecords(today)
       .pipe( map( data => data.filter(record => record.building === buildingName)));
+ }
+
+ getBuildings() : Observable<Building[]> {
+  return this.httpClient.get<Building[]>(`${this.serverUrl}api/building`);
  }
 }
 

@@ -1,5 +1,7 @@
 <h2>Who is in the building</h2>
 
+<app-building-selector></app-building-selector>
+<ng-content *ngIf="accessRecords.length > 0">
 <p>There are {{accessRecords.length}} users in the building right now</p>
 
 <table class="table">
@@ -16,3 +18,4 @@
         </tr>
     </tbody>
 </table>
+</ng-content>
