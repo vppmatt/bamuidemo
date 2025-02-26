@@ -1,6 +1,8 @@
 <h1>Users</h1>
 
-<table class="table">
+<div [class]="messageClass">{{message}}</div>
+
+<table *ngIf="users.length >0" class="table">
     <thead>
         <tr>
             <th>id</th>

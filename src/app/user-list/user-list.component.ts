@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../../model/User';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { SortOrderService } from '../sort-order.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgIf],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
@@ -18,15 +18,32 @@ export class UserListComponent implements OnInit, OnDestroy {
               private sortOrderService: SortOrderService
   ) {}
 
+  message = "";
+  messageClass = "d-none";
 
   users : User[] = [];
 
   sortEventSubscription? : Subscription;
 
   ngOnInit(): void {
-    this.dataService.getUsers().subscribe( data => this.users = data); 
+    this.message = "loading data please wait...";
+    this.messageClass = "alert alert-info"
+    this.dataService.getUsers().subscribe( {
+      next : data => {this.users = data;
+                      this.messageClass="d-none";
+                      },
+      error: err => {this.message = err.message;
+                     this.messageClass="alert alert-danger"
+                     },
+      complete: () => {}
+    }); 
+
+
+
+
     this.sortEventSubscription = this.sortOrderService.sortEvent
       .subscribe( sortType => this.sortData(sortType)  );
+
   }
 
   ngOnDestroy(): void {
