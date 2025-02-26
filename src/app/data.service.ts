@@ -25,7 +25,17 @@ export class DataService {
         .pipe( 
           map( fullArray  => 
               fullArray.map(rec => ({...rec, building: rec.building.name  })  )
-              ) 
+               ) 
+        )
+  }
+
+  whoIsInTheBuildingNow(building : string) {
+      const today = new Date().toISOString().split("T")[0].replace("/", "");  // 20250226
+      return this.getAccessRecords(today)
+        .pipe(
+            map(
+              allRecs => allRecs.filter(it => it.building === building)
+            )
         )
   }
   
