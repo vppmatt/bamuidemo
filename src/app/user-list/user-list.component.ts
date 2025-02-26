@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { User } from '../../model/User';
 import { NgFor } from '@angular/common';
 import { SortOrderService } from '../sort-order.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -11,17 +12,25 @@ import { SortOrderService } from '../sort-order.service';
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnInit, OnDestroy {
 
   constructor(private dataService : DataService,
               private sortOrderService: SortOrderService
   ) {}
 
+
   users : User[] = [];
+
+  sortEventSubscription? : Subscription;
 
   ngOnInit(): void {
     this.dataService.getUsers().subscribe( data => this.users = data); 
-    this.sortOrderService.sortEvent.subscribe( sortType => this.sortData(sortType)  );
+    this.sortEventSubscription = this.sortOrderService.sortEvent
+      .subscribe( sortType => this.sortData(sortType)  );
+  }
+
+  ngOnDestroy(): void {
+    this.sortEventSubscription?.unsubscribe();
   }
 
   sortData(sortType: number) {
