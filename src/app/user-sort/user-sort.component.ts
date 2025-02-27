@@ -12,4 +12,11 @@ export class UserSortComponent {
 
   constructor(public sortOrderService : SortOrderService) {}
 
+  sortType = 1;
+
+  handleClick(sort: number) {
+    this.sortType = sort;
+    this.sortOrderService.handleSortRequest(sort);
+  }
+
 }

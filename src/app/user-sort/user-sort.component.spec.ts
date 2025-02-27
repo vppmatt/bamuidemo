@@ -20,4 +20,12 @@ describe('UserSortComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("sort type is set to 3 when user clicks on surname button", () =>{
+      const button : HTMLElement = fixture.debugElement.
+          query( e => e.nativeElement.textContent === "sort by surname").nativeElement;
+      button.click();
+      fixture.detectChanges();
+      expect(component.sortType).toEqual(3);
+  } );
 });

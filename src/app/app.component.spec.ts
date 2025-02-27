@@ -16,6 +16,14 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
+  it("application name should appear on the page", () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+    const title = fixture.elementRef.nativeElement.querySelector("h1")?.textContent;
+    expect(title).toEqual("Building Access Management System");
+  });
+
   xit(`should have the 'bamui' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
