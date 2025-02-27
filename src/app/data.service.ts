@@ -43,6 +43,9 @@ export class DataService {
       return this.http.get<Building[]>(`${this.url}/api/building`)
   }
 
+  getUser(id : number) : Observable<User> {
+    return this.http.get<User>(`${this.url}/api/user/${id}`)
+  }
 
 }
 

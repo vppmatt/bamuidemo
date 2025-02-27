@@ -4,6 +4,8 @@ import { AccessRecordsComponent } from './access-records/access-records.componen
 import { UserPageComponent } from './user-page/user-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { PnfPageComponent } from './pnf-page/pnf-page.component';
+import { LoginComponent } from './login/login.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 export const routes: Routes = [
     {path: "emergency", component: EmergencyComponent },
@@ -11,5 +13,7 @@ export const routes: Routes = [
     {path: "logs", component: AccessRecordsComponent},
     {path: "users", component: UserPageComponent},
     {path : "", component : HomePageComponent},
+    {path : "login", component : LoginComponent},
+    {path : "user/:id", component: UserEditComponent},
     {path: "**", component: PnfPageComponent}
 ];
