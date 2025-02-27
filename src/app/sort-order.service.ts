@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -6,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SortOrderService {
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   private _sortEvent = new Subject<number>();
 
@@ -15,6 +16,7 @@ export class SortOrderService {
   }
 
   handleSortRequest(sortType: number) {
+    this.router.navigate(["/users"], {queryParams : {"sort" : sortType} });
     this._sortEvent.next(sortType);
 
   }
