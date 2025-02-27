@@ -33,6 +33,7 @@ describe('EmergencyComponent', () => {
   it('buildings list is populated correctly', ()=> {
      
     //mock the call to the server
+    localStorage.removeItem("buildings-last-fetch")
     httpController.expectOne("https://someServer.com/api/building")
     .flush([
       {id : 1, name : "First building"},
