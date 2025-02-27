@@ -1,0 +1,30 @@
+Breaking changes in Ag-Grid v33:
+
+(1) In the ts file:
+
+Not all modules are loaded by default - you can now select the ones you need to minimise package size. 
+We will just load everything to keep it simple.
+
+We also now import a theme (previously we had to directly import css files) 
+
+import { ModuleRegistry } from 'ag-grid-community'; 
+import { AllCommunityModule, themeBalham } from 'ag-grid-community'; 
+
+(2) In the ts file:
+
+Create a variable to store the selected theme:
+
+  gridTheme = themeBalham;
+
+(3) In the ts file: 
+
+register the modules to make them avialable
+
+  ngOnInit() {
+    ModuleRegistry.registerModules([ AllCommunityModule ]); 
+    ...
+
+(4) In the html:
+
+<ag-grid-angular [columnDefs]="columnDefs" [rowData]="accessRecords" [theme]="gridTheme" style="height: 500px"></ag-grid-angular>
+

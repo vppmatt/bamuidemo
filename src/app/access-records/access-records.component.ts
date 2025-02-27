@@ -5,13 +5,9 @@ import { NgFor } from '@angular/common';
 import  {AgGridAngular} from 'ag-grid-angular';
 import { ColDef } from 'ag-grid-community';
 
-//TO DO - REVIEW 
 
 import { ModuleRegistry } from 'ag-grid-community'; 
-import { ClientSideRowModelModule } from 'ag-grid-community'; 
-
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-quartz.css'
+import { AllCommunityModule, themeBalham } from 'ag-grid-community'; 
 
 @Component({
   selector: 'app-access-records',
@@ -21,6 +17,8 @@ import 'ag-grid-community/styles/ag-theme-quartz.css'
   styleUrl: './access-records.component.css'
 })
 export class AccessRecordsComponent implements OnInit {
+
+  gridTheme = themeBalham;
 
   columnDefs : ColDef[] = [
     {field : "id"},
@@ -39,7 +37,7 @@ export class AccessRecordsComponent implements OnInit {
   accessRecords : AccessRecord[] = [];
 
   ngOnInit() {
-    ModuleRegistry.registerModules([ ClientSideRowModelModule ]); 
+    ModuleRegistry.registerModules([ AllCommunityModule ]); 
       this.dataService.getAccessRecords("20250225")
           .subscribe(data => this.accessRecords = data)
   }
