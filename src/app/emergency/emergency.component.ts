@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { AccessRecord } from '../../model/AccessRecord';
 import { NgFor } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Building } from '../../model/Building';
 
 @Component({
   selector: 'app-emergency',
@@ -13,19 +14,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmergencyComponent implements OnInit {
 
-  constructor(private dataService : DataService, private route: ActivatedRoute) {}
+  constructor(private dataService : DataService, private route: ActivatedRoute,
+      private router : Router
+  ) {}
 
   accessRecords : Array<AccessRecord> = [];
 
   building = "";
 
+  buildings : Building[] = [];
+
   ngOnInit(): void {
+    this.dataService.getBuildings().subscribe(
+      data => this.buildings = data
+    )
+
     this.route.params.subscribe( params => {
       this.building = params["building"];
       if (this.building != null) 
          this.loadData();
     })
       
+  }
+
+  handleChangeBuilding(event : Event) {
+      const selectElement : HTMLSelectElement = event.target as HTMLSelectElement;
+      const selectedBuilding = selectElement.value;
+      this.router.navigate(["/emergency", selectedBuilding])
   }
 
   loadData() {

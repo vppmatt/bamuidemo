@@ -39,6 +39,11 @@ export class DataService {
         )
   }
   
+  getBuildings() : Observable<Building[]> {
+      return this.http.get<Building[]>(`${this.url}/api/building`)
+  }
+
+
 }
 
 type ServerAccessRecord = AccessRecord & {
