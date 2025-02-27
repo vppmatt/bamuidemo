@@ -37,7 +37,8 @@ export class EmergencyComponent implements OnInit {
   loadDataFromStorage() {
     console.log("getting data from storage");
     const data = "" + localStorage.getItem("buildings");
-    this.building = JSON.parse(data);
+    console.log(data);
+    this.buildings = JSON.parse(data);
   }
 
   ngOnInit(): void {
