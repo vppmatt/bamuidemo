@@ -7,6 +7,7 @@ import { PnfPageComponent } from './pnf-page/pnf-page.component';
 
 export const routes: Routes = [
     {path: "emergency", component: EmergencyComponent },
+    {path: "emergency/:building", component: EmergencyComponent },
     {path: "logs", component: AccessRecordsComponent},
     {path: "users", component: UserPageComponent},
     {path : "", component : HomePageComponent},
