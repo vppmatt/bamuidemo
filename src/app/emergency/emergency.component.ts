@@ -24,10 +24,42 @@ export class EmergencyComponent implements OnInit {
 
   buildings : Building[] = [];
 
-  ngOnInit(): void {
+  loadDataFromServer() {
+    console.log("getting data from server");
     this.dataService.getBuildings().subscribe(
-      data => this.buildings = data
+      data => {this.buildings = data,
+        localStorage.setItem("buildings", JSON.stringify(this.buildings));
+        localStorage.setItem("buildings-last-fetch", new Date().toISOString())
+      }
     )
+  }
+
+  loadDataFromStorage() {
+    console.log("getting data from storage");
+    const data = "" + localStorage.getItem("buildings");
+    this.building = JSON.parse(data);
+  }
+
+  ngOnInit(): void {
+
+    const blf = localStorage.getItem("buildings-last-fetch");
+    if (blf != null) {
+      const current = new Date();
+      const storageTime = new Date(blf);
+      const seconds = (current.getTime() - storageTime.getTime()) / 1000;
+      if (seconds < 120) {
+        console.log("data last fetched less than 2 mins ago");
+        this.loadDataFromStorage();
+      }
+      else {
+        console.log("data last fetched more than 2 mins ago");
+        this.loadDataFromServer();
+      }
+    }
+    else {
+      console.log("no data in local storage");
+      this.loadDataFromServer();
+    }
 
     this.route.params.subscribe( params => {
       this.building = params["building"];
