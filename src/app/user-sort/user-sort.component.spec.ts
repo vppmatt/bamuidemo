@@ -28,4 +28,15 @@ describe('UserSortComponent', () => {
       fixture.detectChanges();
       expect(component.sortType).toEqual(3);
   } );
+
+  it("handleClick is executed when user clicks on surname button", () =>{
+    const button : HTMLElement = fixture.debugElement.
+        query( e => e.nativeElement.textContent === "sort by surname").nativeElement;
+    const spy = spyOn(component, "handleClick").and.callThrough();
+    button.click();
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledWith(3);
+    //expect(spy.mostRecent().returnvalue).toEqual(something);
+    
+} );
 });
