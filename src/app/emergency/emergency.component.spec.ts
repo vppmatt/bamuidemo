@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmergencyComponent } from './emergency.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
 describe('EmergencyComponent', () => {
   let component: EmergencyComponent;
@@ -8,7 +10,8 @@ describe('EmergencyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmergencyComponent]
+      imports: [EmergencyComponent],
+      providers: [provideHttpClient(), provideRouter([])]
     })
     .compileComponents();
 

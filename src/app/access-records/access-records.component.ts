@@ -26,7 +26,7 @@ export class AccessRecordsComponent implements OnInit {
       return `${params.data.user.firstname} ${params.data.user.surname}`
     } },
     {field : "time"},
-    {field : "building"},
+    {field : "building", filter: true},
     {field : "status", headerName: "direction",
       valueGetter : params => params.data.status ? "in" : "out"
     }
